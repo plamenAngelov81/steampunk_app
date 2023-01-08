@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>SteamPunk</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="wesite icon" type="jpg" href="{% static 'images/steampunk_logo.jpg' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+</head>
+<body>
+<div class="navigation">
+
+    <a class="left" href="{% url 'home page' %}"><i class="fa-solid fa-house-user"></i> SteamPunk</a>
+    <a class="left" href="#"><i class="fa-sharp fa-solid fa-list-check"></i> Projects</a>
+    <a class="left" href="#"><i class="fa-solid fa-star"></i> About</a>
+    <a class="left" href="#"><i class="fa-solid fa-phone"></i> Contact</a>
+
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'account logout' %}" class="right"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+        <a href="{% url 'account details' pk=user.pk %}" class="right">
+            <i class="fa-solid fa-user"></i> {{ user.username }}</a>
+    {% else %}
+        <a href="{% url 'account register' %}" class="right"> <i class="fa-regular fa-registered"></i> Register</a>
+        <a href="{% url 'account login' %}" class="right"><i class="fa-solid fa-right-to-bracket"></i> Log In</a>
+    {% endif %}
+</div>
+
+{% block page_content %}
+{% endblock %}
+
+</body>
+</html>

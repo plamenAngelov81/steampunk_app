@@ -1,4 +1,39 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block page_content %}
-    hello
+    <link rel="stylesheet" href="{% static 'css/profile_details.css' %}">
+    <div class="profile-details">
+        <h1>Profile Info</h1>
+        <div class="user-image">
+            {% if user.image_url %}
+                <img width="200" height="200" class="account-img" src="{{ user.image_url }}" alt='account-image'>
+            {% else %}
+                <img width="250" height="250" class="build-in-img" src="{% static 'images/avatar.png' %}" alt='build-in-image'/>
+            {% endif %}
+        </div>
+        <div class="table">
+            <table>
+            <tr><td>{{ user.get_name }}</td></tr>
+
+            <tr><td>Username: </td><td>{{ user.username }}</td></tr>
+
+            <tr><td>Email: </td><td>{{ user.email }}</td></tr>
+
+            {% if user.age %}
+                <tr><td>Age: </td><td>{{ user.age }}</td></tr>
+            {% endif %}
+
+            {% if user.phone_number %}
+                <tr><td>Phone: </td><td>{{ user.phone_number }}</td></tr>
+            {% endif %}
+
+            {% if user.user_address %}
+                <tr><td>Address:</td><td>{{ user.user_address }}</td></tr>
+            {% endif %}
+
+        </table>
+
+        </div>
+
+    </div>
 {% endblock %}

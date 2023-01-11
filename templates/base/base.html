@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>SteamPunk</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="wesite icon" type="jpg" href="{% static 'images/steampunk_logo.jpg' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
 </head>
 <body>
-<div class="navigation">
-
-    <a class="left" href="{% url 'home page' %}"><i class="fa-solid fa-house-user"></i> SteamPunk</a>
-    <a class="left" href="#"><i class="fa-sharp fa-solid fa-list-check"></i> Projects</a>
-    <a class="left" href="#"><i class="fa-solid fa-star"></i> About</a>
-    <a class="left" href="#"><i class="fa-solid fa-phone"></i> Contact</a>
-
+<div class="navbar">
+    <a href="{% url 'home page' %}"><i class="fa-solid fa-house-user"></i> Steampunk</a>
+    <a href="#">News</a>
     {% if request.user.is_authenticated %}
-        <a href="{% url 'account logout' %}" class="right"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
-        <a href="{% url 'account details' pk=user.pk %}" class="right">
-            <i class="fa-solid fa-user"></i> {{ user.username }}</a>
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fa-solid fa-user"></i> {{ user.username }} <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="{% url 'account details' pk=user.pk %}"><i class="fa-solid fa-circle-info"></i> Details</a>
+                <a href="{% url 'account edit' pk=user.pk %}"><i class="fa-solid fa-gear"></i> Settings</a>
+                <a href="{% url 'account logout' %}"><i class="fa-solid fa-right-from-bracket"></i> exit</a>
+            </div>
+        </div>
     {% else %}
-        <a href="{% url 'account register' %}" class="right"> <i class="fa-regular fa-registered"></i> Register</a>
-        <a href="{% url 'account login' %}" class="right"><i class="fa-solid fa-right-to-bracket"></i> Log In</a>
+        <a class="right" href="{% url 'account register' %}"><i class="fa-regular fa-registered"></i> Register</a>
+        <a class="right" href="{% url 'account login' %}"><i class="fa-solid fa-right-to-bracket"></i> Log In</a>
     {% endif %}
 </div>
 

@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <link rel="stylesheet" href="{% static 'css/profile_edit.css' %}">
+    <div class="profile-edit">
+        <div class="edit-form">
+            <h2>Edit profile</h2>
+            <form method="post" action="{% url 'account edit' pk=user.pk %}">
+                {{ form.as_div }}
+                {% csrf_token %}
+                <button>Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

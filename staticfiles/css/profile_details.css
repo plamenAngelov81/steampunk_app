@@ -1,0 +1,10 @@
+.profile-details {
+    background-image: url("../images/profile_details.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 896px;
+}
